@@ -27,15 +27,34 @@ class ResultScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Center(child: Text('data', style: kResultStyle)),
-                    Center(child: Text('135', style: kNumberStyle)),
-                    Center(child: Text('data')),
+                    Center(child: Text('Normal', style: kResultStyle)),
+                    Center(
+                      child: Text(
+                        '135.5',
+                        style: TextStyle(
+                          fontSize: 100,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        'Your Bmi Result is quite low, you should eat mor!',
+                        style: kMorResult,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
-          MyBottom(text: '', onTap: () {}),
+          MyBottom(
+            text: 'RE-CALCULATE',
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
         ],
       ),
     );

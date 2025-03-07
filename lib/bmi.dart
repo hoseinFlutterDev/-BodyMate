@@ -1,6 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, camel_case_types, prefer_typing_uninitialized_variables, sort_child_properties_last
 
+import 'dart:math';
+
 import 'package:bmi/mybottom.dart';
+import 'package:bmi/result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -44,6 +47,79 @@ class _BmiState extends State<Bmi> {
   //     }
   //   }
   // }
+
+  void navigateWithRandomAnimation(BuildContext context, Widget page) {
+    final random = Random();
+    final animations = [
+      _slideFromLeft,
+      _slideFromRight,
+      _slideFromTop,
+      _slideFromBottom,
+      _scaleFromCenter,
+      _fadeIn,
+    ];
+
+    final selectedAnimation = animations[random.nextInt(animations.length)];
+
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => page,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return selectedAnimation(animation, child);
+        },
+        transitionDuration: Duration(milliseconds: 500),
+      ),
+    );
+  }
+
+  // انیمیشن‌های مختلف
+  Widget _slideFromLeft(Animation<double> animation, Widget child) {
+    var tween = Tween<Offset>(
+      begin: Offset(-1, 0),
+      end: Offset.zero,
+    ).chain(CurveTween(curve: Curves.easeInOut));
+    var offsetAnimation = animation.drive(tween);
+    return SlideTransition(position: offsetAnimation, child: child);
+  }
+
+  Widget _slideFromRight(Animation<double> animation, Widget child) {
+    var tween = Tween<Offset>(
+      begin: Offset(1, 0),
+      end: Offset.zero,
+    ).chain(CurveTween(curve: Curves.easeInOut));
+    var offsetAnimation = animation.drive(tween);
+    return SlideTransition(position: offsetAnimation, child: child);
+  }
+
+  Widget _slideFromTop(Animation<double> animation, Widget child) {
+    var tween = Tween<Offset>(
+      begin: Offset(0, -1),
+      end: Offset.zero,
+    ).chain(CurveTween(curve: Curves.easeInOut));
+    var offsetAnimation = animation.drive(tween);
+    return SlideTransition(position: offsetAnimation, child: child);
+  }
+
+  Widget _slideFromBottom(Animation<double> animation, Widget child) {
+    var tween = Tween<Offset>(
+      begin: Offset(0, 1),
+      end: Offset.zero,
+    ).chain(CurveTween(curve: Curves.easeInOut));
+    var offsetAnimation = animation.drive(tween);
+    return SlideTransition(position: offsetAnimation, child: child);
+  }
+
+  Widget _scaleFromCenter(Animation<double> animation, Widget child) {
+    var scaleAnimation = Tween<double>(
+      begin: 0.8,
+      end: 1.0,
+    ).chain(CurveTween(curve: Curves.easeOutBack)).animate(animation);
+    return ScaleTransition(scale: scaleAnimation, child: child);
+  }
+
+  Widget _fadeIn(Animation<double> animation, Widget child) {
+    return FadeTransition(opacity: animation, child: child);
+  }
 
   int height = 180;
   int weight = 60;
@@ -243,7 +319,7 @@ class _BmiState extends State<Bmi> {
           MyBottom(
             text: 'CALCULATE',
             onTap: () {
-              Navigator.pushNamed(context, '/first');
+              navigateWithRandomAnimation(context, ResultScreen());
             },
           ),
         ],

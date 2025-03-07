@@ -19,4 +19,5 @@ const kBottomStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 const kTitreStyle = TextStyle(fontSize: 43, fontWeight: FontWeight.bold);
-const kResultStyle = TextStyle(fontSize: 20, color: Color(0xff3CBA7E));
+const kResultStyle = TextStyle(fontSize: 23, color: Color(0xff3CBA7E));
+const kMorResult = TextStyle(fontSize: 23, color: Colors.white);
