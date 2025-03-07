@@ -2,15 +2,16 @@
 
 import 'dart:math';
 
-import 'package:bmi/mybottom.dart';
+import 'package:bmi/class/brain.dart';
+import 'package:bmi/class/mybottom.dart';
 import 'package:bmi/result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'content.dart';
-import 'gender.dart';
+import 'class/content.dart';
+import 'class/gender.dart';
 
-import 'mycontainer.dart';
+import 'class/mycontainer.dart';
 
 enum Gender { male, female }
 
@@ -319,7 +320,15 @@ class _BmiState extends State<Bmi> {
           MyBottom(
             text: 'CALCULATE',
             onTap: () {
-              navigateWithRandomAnimation(context, ResultScreen());
+              Brain calc = Brain(hight: height, weight: weight);
+              navigateWithRandomAnimation(
+                context,
+                ResultScreen(
+                  calculate: calc.calculateBmi(),
+                  result: calc.getResult(),
+                  detail: calc.getDetail(),
+                ),
+              );
             },
           ),
         ],

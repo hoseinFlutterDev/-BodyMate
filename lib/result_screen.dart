@@ -1,9 +1,19 @@
-import 'package:bmi/content.dart';
-import 'package:bmi/mybottom.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import 'package:bmi/class/content.dart';
+import 'package:bmi/class/mybottom.dart';
+
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key});
+  final String result;
+  final String calculate;
+  final String detail;
+  const ResultScreen({
+    Key? key,
+    required this.result,
+    required this.calculate,
+    required this.detail,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +38,10 @@ class ResultScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Center(child: Text('Normal', style: kResultStyle)),
+                    Center(child: Text(result, style: kResultStyle)),
                     Center(
                       child: Text(
-                        '135.5',
+                        calculate,
                         style: TextStyle(
                           fontSize: 100,
                           fontWeight: FontWeight.w500,
@@ -40,7 +50,7 @@ class ResultScreen extends StatelessWidget {
                     ),
                     Center(
                       child: Text(
-                        'Your Bmi Result is quite low, you should eat mor!',
+                        detail,
                         style: kMorResult,
                         textAlign: TextAlign.center,
                       ),

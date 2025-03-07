@@ -17,8 +17,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(backgroundColor: Color(0xFF090C22)),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {'/': (context) => Bmi(), '/first': (context) => ResultScreen()},
+      home: Bmi(),
     );
   }
 }
