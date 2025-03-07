@@ -11,8 +11,9 @@ class ResultScreen extends StatelessWidget {
       appBar: AppBar(title: Text('BMI CALCULATE'), centerTitle: true),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
+          Container(
+            padding: EdgeInsets.all(15),
+            alignment: Alignment.bottomLeft,
             child: Text('Your Result', style: kTitreStyle),
           ),
           Expanded(
